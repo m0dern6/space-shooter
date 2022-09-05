@@ -56,7 +56,7 @@
     End Sub
 
     Private Sub tmrRight_Tick(sender As Object, e As EventArgs) Handles tmrRight.Tick
-        If (Plane.Location.X < 533) And (Plane.Left < Me.Width - 80) Then
+        If (Plane.Location.X < 533) And (Plane.Left < Me.Width - 70) Then
             Plane.Left += 12
         End If
 
@@ -127,9 +127,12 @@
         For i = 0 To Number
             Dim Enemy As New PictureBox
             Enemy.Width = 20
-            Enemy.Height = 20
+            Enemy.Height = 35
             Enemy.BorderStyle = BorderStyle.FixedSingle
-            Enemy.BackColor = Color.Blue
+            ' Enemy.BackColor = Color.Blue
+            Enemy.Image = Global.feri_banaako.My.Resources.Resource1.villian
+            Enemy.SizeMode = PictureBoxSizeMode.StretchImage
+            Enemy.BackColor = System.Drawing.Color.Transparent
             ' Me.BackgroundImage = My.Resources.Enemy
             'Me.BackgroundImageLayout = ImageLayout.Stretch
             Me.Controls.Add(Enemy)
@@ -171,7 +174,8 @@
                 tmrShoot.Stop()
                 tmrEnemey.Stop()
                 ScoreTimer.Stop()
-                MsgBox("Game Over")
+                Button1.Visible = True
+                'MsgBox("Game Over")
             End If
             Random = Rnd()
 
@@ -194,8 +198,15 @@
         score += 1
         ScoreLabel.Text = "Score: " & score
         If score Mod 10 = 0 Then
-            enemySpeed += 0.8
+            enemySpeed += 0.7
 
         End If
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        score = 0
+        Me.Controls.Clear()
+        InitializeComponent()
+        Form1_Load(e, e)
     End Sub
 End Class
